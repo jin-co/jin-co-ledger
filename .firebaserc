@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "balance-b97f9": {
+      "hosting": {
+        "client-ticket": [
+          "balance-b97f9"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "balance-b97f9"
+  }
+}
