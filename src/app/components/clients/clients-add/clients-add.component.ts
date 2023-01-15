@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Client } from 'src/app/models/client';
+import { AuthService } from 'src/app/services/auth.service';
 import { ClientService } from 'src/app/services/client.service';
 import { MessageService } from 'src/app/services/message.service';
 import { SettingService } from 'src/app/services/setting.service';
@@ -12,19 +13,24 @@ import { SettingService } from 'src/app/services/setting.service';
 })
 export class ClientsAddComponent implements OnInit {
   client!: Client;
-  disableBalanceOnAdd: boolean = this.settingService.getSettings().disableBalanceOnAdd;
+  disableBalanceOnAdd: boolean =
+    this.settingService.getSettings().disableBalanceOnAdd;
 
   constructor(
     private clientService: ClientService,
-    private settingService: SettingService 
+    private settingService: SettingService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      form.value.balance = 0;
-      this.clientService.addClient(form.value);
+      this.authService.getAuth().subscribe((auth) => {
+        form.value.owner = auth?.uid;
+        form.value.balance = 0;
+        this.clientService.addClient(form.value);
+      });
     }
   }
 }

@@ -16,9 +16,7 @@ export class OwnerService {
   ownerDoc!: AngularFirestoreDocument<Owner>;
 
   constructor(
-    private authService: AuthService,
     private afs: AngularFirestore,
-    private router: Router
   ) {
     this.ownersCollection = this.afs.collection('users');
   }
