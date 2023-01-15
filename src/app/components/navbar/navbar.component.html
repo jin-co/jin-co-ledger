@@ -1,10 +1,10 @@
 <div class="nav navbar navbar-expand-md navbar-dark bg-primary mb-4">
   <div class="container">
     <a routerLink="/" class="navbar-brand">Balance</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" (click)="isMenuClosed = !isMenuClosed">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarMain">
+    <div class="navbar-collapse" id="navbarMain" [ngClass]="{collapse: isMenuClosed}">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a routerLink="/dashboard" class="nav-link">

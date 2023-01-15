@@ -9,7 +9,9 @@ import { SettingService } from 'src/app/services/setting.service';
 })
 export class NavbarComponent implements OnInit {
   loggedInUser!: string;
-  showRegister: boolean = this.settingService.getSettings().allowRegistration;
+  isMenuClosed:boolean = true
+  showRegister: boolean = this.settingService.
+  getSettings().allowRegistration;
 
   constructor(
     private autService: AuthService,
