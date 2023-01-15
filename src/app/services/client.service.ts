@@ -62,20 +62,30 @@ export class ClientService {
       this.clientsCollection.add(client);
       this.messageService.showMessage('New Client Added', 'green');
     } catch (error) {
-      this.messageService.showMessage('Failed', 'red');
+      this.messageService.showMessage('Adding Failed', 'red');
     }
     this.router.navigate(['/']);
   }
 
   updateClient(client: Client) {
-    this.clientDoc = this.afs.doc(`clients/${client.id}`);
-    this.clientDoc.update(client);
+    try {
+      this.clientDoc = this.afs.doc(`clients/${client.id}`);
+      this.clientDoc.update(client);
+      this.messageService.showMessage('Client Updated', 'green');
+    } catch (error) {
+      this.messageService.showMessage('Updating Failed', 'red');
+    }
     this.router.navigate(['/']);
   }
 
   deleteClient(client: Client) {
-    this.clientDoc = this.afs.doc(`clients/${client.id}`);
-    this.clientDoc.delete();
+    try {
+      this.clientDoc = this.afs.doc(`clients/${client.id}`);
+      this.clientDoc.delete();
+      this.messageService.showMessage('Client Deleted', 'green');
+    } catch (error) {
+      this.messageService.showMessage('Deleting Failed', 'red');
+    }
     this.router.navigate(['/']);
   }
 }

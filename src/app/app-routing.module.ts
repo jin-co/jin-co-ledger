@@ -11,19 +11,27 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent},
-  {path: 'join', component: JoinComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'client/add', component: ClientsAddComponent, canActivate:[AuthGuard]},
-  {path: 'client/edit/:id', component: ClientsEditComponent},
-  {path: 'client/:id', component: ClientDetailsComponent},
-  {path: 'setting', component: SettingsComponent},
-  {path: '**', component: NotFoundComponent},
+  { path: '', component: DashboardComponent },
+  { path: 'join', component: JoinComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'client/add',
+    component: ClientsAddComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'client/edit/:id', component: ClientsEditComponent },
+  {
+    path: 'client/:id',
+    component: ClientDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'setting', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
