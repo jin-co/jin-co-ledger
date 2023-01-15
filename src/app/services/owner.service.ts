@@ -23,10 +23,11 @@ export class OwnerService {
     this.ownersCollection = this.afs.collection('users');
   }
 
-  addOwner() {
-    this.authService.currentUser.subscribe((user) => {
-      const newOwner: Owner = user;
-      this.ownersCollection.add(newOwner);
-    });
+  addOwner(uid: string, email: string) {
+    const newOwner: Owner = {
+      uid: uid,
+      email: email,
+    };
+    this.ownersCollection.add(newOwner);
   }
 }

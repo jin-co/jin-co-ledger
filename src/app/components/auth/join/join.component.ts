@@ -24,11 +24,10 @@ export class JoinComponent implements OnInit {
       .join(this.email, this.password)
       .then((res) => {
         this.authService.getAuth().subscribe((auth) => {
-          this.authService.currentUser.next({
-            uid: auth?.uid as string,
-            email: auth?.email as string,
-          });
-          this.ownerService.addOwner();
+          this.ownerService.addOwner(
+            auth?.uid as string,
+            auth?.email as string
+          );
         });
       })
       .catch((err) => {});
