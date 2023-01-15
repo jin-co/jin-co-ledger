@@ -22,6 +22,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/shared/modal/modal.component';
+import { AuthModalComponent } from './components/auth/auth-modal/auth-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ModalComponent } from './components/shared/modal/modal.component';
     SettingsComponent,
     NotFoundComponent,
     ModalComponent,
+    AuthModalComponent,
   ],
   imports: [
     BrowserModule,
