@@ -7,8 +7,13 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afa: AngularFireAuth, private router: Router) {}
   isLogged = new Subject<boolean>();
+  currentUser = new Subject<{
+    email: string;
+    uid: string;
+  }>();
+
+  constructor(private afa: AngularFireAuth, private router: Router) {}
 
   login(email: string, password: string) {
     return new Promise((resolve, reject) => {

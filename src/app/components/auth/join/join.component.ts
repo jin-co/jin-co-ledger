@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { OwnerService } from 'src/app/services/owner.service';
 
 @Component({
   selector: 'app-join',
@@ -10,7 +11,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class JoinComponent implements OnInit {
   email!: string;
   password!: string;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private ownerService: OwnerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -18,9 +23,12 @@ export class JoinComponent implements OnInit {
     this.authService
       .join(this.email, this.password)
       .then((res) => {
-        this.router.navigate(['/']);
         this.authService.getAuth().subscribe((auth) => {
-          console.log(auth?.uid);
+          this.authService.currentUser.next({
+            uid: auth?.uid as string,
+            email: auth?.email as string,
+          });
+          this.ownerService.addOwner();
         });
       })
       .catch((err) => {});
