@@ -14,9 +14,9 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.afa.signInWithEmailAndPassword(email, password).then(
         (userData) => resolve(userData),
-        (err) => reject(err)        
+        (err) => reject(err)
       );
-      this.isLogged.next(true)
+      this.isLogged.next(true);
     });
   }
 
@@ -37,5 +37,5 @@ export class AuthService {
 
   getAuth() {
     return this.afa.authState;
-  }  
+  }
 }

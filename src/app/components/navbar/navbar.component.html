@@ -1,13 +1,13 @@
 <div class="nav navbar navbar-expand-md navbar-dark bg-primary mb-4">
   <div class="container">
-    <a routerLink="/" class="navbar-brand text-uppercase">Balance</a>
+    <a routerLink="/" class="navbar-brand text-uppercase" (click)="isMenuClosed = !isMenuClosed">Balance</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain"
       (click)="isMenuClosed = !isMenuClosed">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse" id="navbarMain" [ngClass]="{collapse: isMenuClosed}">
       <ul class="navbar-nav mr-auto w-100">
-        <li class="nav-item">
+        <li (click)="isMenuClosed = !isMenuClosed" class="nav-item">
           <a routerLink="/" class="nav-link text-uppercase">
             Dashboard
           </a>
@@ -15,31 +15,33 @@
       </ul>
 
       <ul class="navbar-nav ml-auto w-25" [ngClass]="{'w-50': loggedInUser !== undefined}">
-        <li class="nav-item text-uppercase" *ngIf="loggedInUser === undefined && showRegister">
+        <li (click)="isMenuClosed = !isMenuClosed" class="nav-item text-uppercase"
+          *ngIf="loggedInUser === undefined && showRegister">
           <a routerLink="/login" class="nav-link">
             Log in
           </a>
         </li>
 
-        <li class="nav-item text-uppercase" *ngIf="loggedInUser === undefined && showRegister">
+        <li (click)="isMenuClosed = !isMenuClosed" class="nav-item text-uppercase"
+          *ngIf="loggedInUser === undefined && showRegister">
           <a routerLink="/join" class="nav-link">
             Join
           </a>
         </li>
 
-        <li class="nav-item" *ngIf="loggedInUser !== undefined">
+        <li (click)="isMenuClosed = !isMenuClosed" class="nav-item" *ngIf="loggedInUser !== undefined">
           <a class="nav-link">
             {{loggedInUser}}
           </a>
         </li>
 
-        <li class="nav-item text-uppercase" *ngIf="loggedInUser !== undefined">
+        <li (click)="isMenuClosed = !isMenuClosed" class="nav-item text-uppercase" *ngIf="loggedInUser !== undefined">
           <a routerLink="/setting" class="nav-link">
             setting
           </a>
         </li>
 
-        <li class="nav-item text-uppercase" *ngIf="loggedInUser !== undefined">
+        <li (click)="isMenuClosed = !isMenuClosed" class="nav-item text-uppercase" *ngIf="loggedInUser !== undefined">
           <a routerLink="/" class="nav-link" (click)="onLogout()">
             Logout
           </a>

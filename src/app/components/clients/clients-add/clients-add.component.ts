@@ -16,7 +16,7 @@ export class ClientsAddComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    private settingService: SettingService    
+    private settingService: SettingService 
   ) {}
 
   ngOnInit(): void {}

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 import { map, Observable } from 'rxjs';
 import { Client } from '../models/client';
+import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
 
 @Injectable({
@@ -18,14 +19,16 @@ export class ClientService {
   clientDoc!: AngularFirestoreDocument<Client>;
   clients!: Observable<Client[]>;
   client!: Observable<Client>;
+  owner!: string;
   constructor(
     private afs: AngularFirestore,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthService
   ) {
     this.clientsCollection = this.afs.collection('clients', (ref) =>
       ref.orderBy('lastName', 'asc')
-    );
+    );    
   }
 
   getClients(): Observable<Client[]> {
