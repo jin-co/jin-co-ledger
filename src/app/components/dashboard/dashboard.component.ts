@@ -11,10 +11,12 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    if (this.authService.isLogged) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
+    this.authService.getAuth().subscribe((auth) => {
+      if (auth) {
+        this.isLogged = true;
+      } else {
+        this.isLogged = false;
+      }
+    });
   }
 }
