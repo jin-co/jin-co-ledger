@@ -16,6 +16,10 @@ export class ModalService {
     this.modals.push(newModal);
   }
 
+  unRegisterModal(id: string) {
+    this.modals = this.modals.filter((m) => m.modalId !== id);
+  }
+
   toggleModal(id: string) {
     const selectedModal = this.modals.find((m) => m.modalId === id);
     if (selectedModal) {
