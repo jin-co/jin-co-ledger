@@ -11,11 +11,11 @@ export class AuthService {
 
   login(email: string, password: string) {
     return new Promise((resolve, reject) => {
+      this.router.navigate(['/']);
       this.afa.signInWithEmailAndPassword(email, password).then(
         (userData) => resolve(userData),
-        (err) => reject(err)
-      );
-      this.router.navigate(['/']);
+        (err) => reject(err)        
+      );      
     });
   }
 

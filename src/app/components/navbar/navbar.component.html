@@ -1,7 +1,8 @@
 <div class="nav navbar navbar-expand-md navbar-dark bg-primary mb-4">
   <div class="container">
     <a routerLink="/" class="navbar-brand">Balance</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" (click)="isMenuClosed = !isMenuClosed">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain"
+      (click)="isMenuClosed = !isMenuClosed">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse" id="navbarMain" [ngClass]="{collapse: isMenuClosed}">
@@ -13,7 +14,7 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav ml-auto w-25">
+      <ul class="navbar-nav ml-auto w-25" [ngClass]="{'w-50': loggedInUser !== undefined}">
         <li class="nav-item" *ngIf="loggedInUser === undefined && showRegister">
           <a routerLink="/login" class="nav-link">
             Log in

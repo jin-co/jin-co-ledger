@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/models/client';
+import { AuthService } from 'src/app/services/auth.service';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { ClientService } from 'src/app/services/client.service';
 export class ClientsComponent implements OnInit {
   clients: Client[] = [];
   totalOwed: number = 0;
+
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
