@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Client } from 'src/app/models/client';
 import { ClientService } from 'src/app/services/client.service';
+import { MessageService } from 'src/app/services/message.service';
 import { SettingService } from 'src/app/services/setting.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ClientsAddComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    private settingService: SettingService
+    private settingService: SettingService    
   ) {}
 
   ngOnInit(): void {}

@@ -1,0 +1,5 @@
+<div class="fixed-top w-25 m-auto" style="top: 35px; box-shadow: 1px 1px 2px 3px rgba(0, 0, 0, .2);" *ngIf="messageService.getIsOpen()">
+  <div class="card row p-1" [style.backgroundColor]="messageService.getBgColor()">    
+    <p class="text-center m-0 text-light">{{messageService.getMessage()}}</p>
+  </div>
+</div>

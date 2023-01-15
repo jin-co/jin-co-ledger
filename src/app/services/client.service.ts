@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 import { map, Observable } from 'rxjs';
 import { Client } from '../models/client';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,11 @@ export class ClientService {
   clientDoc!: AngularFirestoreDocument<Client>;
   clients!: Observable<Client[]>;
   client!: Observable<Client>;
-  constructor(private afs: AngularFirestore, private router: Router) {
+  constructor(
+    private afs: AngularFirestore,
+    private router: Router,
+    private messageService: MessageService
+  ) {
     this.clientsCollection = this.afs.collection('clients', (ref) =>
       ref.orderBy('lastName', 'asc')
     );
@@ -53,19 +58,24 @@ export class ClientService {
   }
 
   addClient(client: Client) {
-    this.clientsCollection.add(client);
+    try {
+      this.clientsCollection.add(client);
+      this.messageService.showMessage('New Client Added', 'green');
+    } catch (error) {
+      this.messageService.showMessage('Failed', 'red');
+    }
     this.router.navigate(['/']);
   }
 
   updateClient(client: Client) {
     this.clientDoc = this.afs.doc(`clients/${client.id}`);
     this.clientDoc.update(client);
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
-  deleteClient(client:Client) {
+  deleteClient(client: Client) {
     this.clientDoc = this.afs.doc(`clients/${client.id}`);
     this.clientDoc.delete();
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 }
