@@ -23,6 +23,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/shared/modal/modal.component';
 import { AuthModalComponent } from './components/auth/auth-modal/auth-modal.component';
+import { MessageFlashComponent } from './shared/message-flash/message-flash.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AuthModalComponent } from './components/auth/auth-modal/auth-modal.comp
     NotFoundComponent,
     ModalComponent,
     AuthModalComponent,
+    MessageFlashComponent,
   ],
   imports: [
     BrowserModule,
