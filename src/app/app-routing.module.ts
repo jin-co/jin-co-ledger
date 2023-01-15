@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'join', component: JoinComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'client/add', component: ClientsAddComponent},
+  {path: 'client/add', component: ClientsAddComponent, canActivate:[AuthGuard]},
   {path: 'client/edit/:id', component: ClientsEditComponent},
   {path: 'client/:id', component: ClientDetailsComponent},
   {path: 'setting', component: SettingsComponent},
