@@ -8,10 +8,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class AuthService {
   isLogged = new Subject<boolean>();
-  currentUser = new Subject<{
-    email: string;
-    uid: string;
-  }>();
+  uid!: string;
 
   constructor(private afa: AngularFireAuth, private router: Router) {}
 
@@ -26,8 +23,8 @@ export class AuthService {
   }
 
   logout() {
-    this.afa.signOut();
     this.isLogged.next(false);
+    this.afa.signOut();
   }
 
   join(email: string, password: string) {
@@ -42,5 +39,13 @@ export class AuthService {
 
   getAuth() {
     return this.afa.authState;
+  }
+
+  setUID(uid: string) {
+    uid = uid;
+  }
+
+  getCurrentUID() {
+    return this.uid;
   }
 }

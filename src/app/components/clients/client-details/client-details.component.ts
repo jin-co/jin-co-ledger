@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Client } from 'src/app/models/client';
+import { AuthService } from 'src/app/services/auth.service';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
@@ -22,9 +23,9 @@ export class ClientDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.clientService.getClient(this.id).subscribe((client) => {
-      if(typeof client.balance !== 'undefined') {
-        if(client.balance > 0) {
-          this.hasBalance = true
+      if (typeof client.balance !== 'undefined') {
+        if (client.balance > 0) {
+          this.hasBalance = true;
         }
       }
       this.client = client;
@@ -32,10 +33,10 @@ export class ClientDetailsComponent implements OnInit {
   }
 
   onDelete() {
-    this.clientService.deleteClient(this.client)
+    this.clientService.deleteClient(this.client);
   }
 
   updateBalance() {
-    this.clientService.updateClient(this.client)
+    this.clientService.updateClient(this.client);
   }
 }

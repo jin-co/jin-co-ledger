@@ -15,7 +15,7 @@ import { MessageService } from './message.service';
   providedIn: 'root',
 })
 export class ClientService {
-  clientsCollection: AngularFirestoreCollection<Client>;
+  clientsCollection!: AngularFirestoreCollection<Client>;
   clientDoc!: AngularFirestoreDocument<Client>;
   clients!: Observable<Client[]>;
   client!: Observable<Client>;
@@ -26,12 +26,16 @@ export class ClientService {
     private messageService: MessageService,
     private authService: AuthService
   ) {
-    this.clientsCollection = this.afs.collection('clients', (ref) =>
-      ref.orderBy('lastName', 'asc')
-    );    
+    // this.clientsCollection = this.afs.collection('clients', (ref) =>
+    //   ref.orderBy('lastName', 'asc')
+    // );
   }
 
-  getClients(): Observable<Client[]> {
+  getClients(uid: string): Observable<Client[]> {
+    console.log(uid)
+    this.clientsCollection = this.afs.collection('clients', (ref) =>
+      ref.where('owner', '==', uid)
+    );
     this.clients = this.clientsCollection.snapshotChanges().pipe(
       map((changes) => {
         return changes.map((action) => {
