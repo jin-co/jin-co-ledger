@@ -24,6 +24,7 @@ export class AuthService {
 
   logout() {
     this.isLogged.next(false);
+    localStorage.removeItem('ledger-uid');
     this.afa.signOut();
   }
 
@@ -43,9 +44,13 @@ export class AuthService {
 
   setUID(uid: string) {
     this.uid = uid;
+    localStorage.setItem('ledger-uid', this.uid);
   }
 
   getCurrentUID() {
+    if (localStorage.getItem('ledger-uid')) {
+      this.uid = localStorage.getItem('ledger-uid') as string;
+    }
     return this.uid;
   }
 }
