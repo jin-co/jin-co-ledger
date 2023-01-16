@@ -5,5 +5,6 @@ export interface Client {
   email?: string;
   phone?: string;
   balance?: number;
+  currency?: string;
   owner?: string;
 }
