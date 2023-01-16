@@ -15,7 +15,7 @@ export class AuthService {
   login(email: string, password: string) {
     return new Promise((resolve, reject) => {
       this.afa.signInWithEmailAndPassword(email, password).then(
-        (userData) => resolve(userData),
+        (userData) => resolve(userData.user?.uid),
         (err) => reject(err)
       );
       this.isLogged.next(true);
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   setUID(uid: string) {
-    uid = uid;
+    this.uid = uid;
   }
 
   getCurrentUID() {

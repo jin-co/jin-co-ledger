@@ -26,15 +26,14 @@ export class ClientService {
     private messageService: MessageService,
     private authService: AuthService
   ) {
-    // this.clientsCollection = this.afs.collection('clients', (ref) =>
-    //   ref.orderBy('lastName', 'asc')
-    // );
+    this.clientsCollection = this.afs.collection('clients', (ref) =>
+      ref.orderBy('lastName', 'asc')
+    );
   }
 
-  getClients(uid: string): Observable<Client[]> {
-    console.log(uid)
+  getClients(): Observable<Client[]> {    
     this.clientsCollection = this.afs.collection('clients', (ref) =>
-      ref.where('owner', '==', uid)
+      ref.where('owner', '==', this.authService.getCurrentUID() === undefined ? '' : this.authService.getCurrentUID())
     );
     this.clients = this.clientsCollection.snapshotChanges().pipe(
       map((changes) => {

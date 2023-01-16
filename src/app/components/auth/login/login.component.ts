@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.authService.login(this.email, this.password).then(res => {
+      this.authService.setUID(res as string)
       this.router.navigate(['/'])
     }).catch(err => {
       

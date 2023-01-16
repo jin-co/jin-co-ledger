@@ -13,19 +13,10 @@ export class ClientsComponent implements OnInit {
   totalOwed: number = 0;
   loggedUID!: string;
 
-  constructor(
-    private clientService: ClientService,
-    private authService: AuthService
-  ) { 
-    // console.log('client com: ', authService.getCurrentUID())   
-    // authService.getAuth().subscribe((auth) => {
-    //   console.log('client comp: ', auth?.uid)
-    //   this.loggedUID = auth?.uid as string;
-    // });
-  }
+  constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
-    this.clientService.getClients(this.loggedUID).subscribe((clients) => {
+    this.clientService.getClients().subscribe((clients) => {
       this.clients = clients;
       this.getTotalOwed();
     });
