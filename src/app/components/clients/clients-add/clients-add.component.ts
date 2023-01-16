@@ -26,9 +26,11 @@ export class ClientsAddComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      this.authService.getAuth().subscribe((auth) => {
+      this.authService.getAuth().subscribe((auth) => {        
         form.value.owner = auth?.uid;
-        form.value.balance = 0;
+        if (form.value.balance === '') {
+          form.value.balance = 0;
+        }
         this.clientService.addClient(form.value);
       });
     }

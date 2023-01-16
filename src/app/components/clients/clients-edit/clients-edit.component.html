@@ -77,11 +77,11 @@
 
       <div class="form-group mt-2">
         <label for="currency">currency</label>
-        <select name="currency" class="form-control" name="" #currency="ngModel" ngModel>
+        <select name="currency" class="form-control" #currency="ngModel" [(ngModel)]="client.currency">
           <option value="KRW">KRW</option>
           <option value="USD">USD</option>
           <option value="CAD">CAD</option>
-          <option value="MYR">MYR</option>
+          <option value="RM">RM</option>
         </select>
       </div>
 
