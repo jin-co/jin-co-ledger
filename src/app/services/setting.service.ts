@@ -19,6 +19,7 @@ export class SettingService {
   }
 
   changeSettings() {
+    console.log(this.setting)
     localStorage.setItem('setting', JSON.stringify(this.setting));
     this.messageService.showMessage('Setting has been updated', 'green')
   }

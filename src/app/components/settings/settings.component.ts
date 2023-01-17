@@ -8,11 +8,13 @@ import { SettingService } from 'src/app/services/setting.service';
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit {
-  settings: Setting = new Setting();
+  settings!: Setting;
+  currency:string = ''
   constructor(private settingService: SettingService) {}
 
   ngOnInit(): void {
     this.settings = this.settingService.getSettings();
+    this.currency = this.settingService.getSettings().currency;
   }
 
   onSubmit() {
