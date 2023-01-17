@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { MessageService } from 'src/app/services/message.service';
 import { OwnerService } from 'src/app/services/owner.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class JoinComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private ownerService: OwnerService,
-    private router: Router
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {}
@@ -30,6 +31,8 @@ export class JoinComponent implements OnInit {
           );
         });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        this.messageService.showMessage(err.toString().split('Firebase:')[1], 'red');
+      });
   }
 }

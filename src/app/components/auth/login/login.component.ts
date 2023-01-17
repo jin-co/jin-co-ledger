@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
         this.authService.setUID(res as string);
         this.router.navigate(['/']);
       })
-      .catch((err) => {
-        console.log('login error: ', err)
+      .catch((err) => {        
         this.messageService.showMessage(err.toString().split('Firebase:')[1], 'red');
       });
   }
